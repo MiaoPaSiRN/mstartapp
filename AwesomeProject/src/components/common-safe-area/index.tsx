@@ -2,9 +2,9 @@ import {StyleSheet, View} from 'react-native';
 import React from 'react';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
 
-interface Props {
+type Props = {
   type?: 'top' | 'bottom' | 'appBar' | 'tabBar' | undefined; //样式
-}
+};
 export default function CommonSafeArea({type = 'appBar'}: Props) {
   const insets = useSafeAreaInsets();
   if (type === 'top') {

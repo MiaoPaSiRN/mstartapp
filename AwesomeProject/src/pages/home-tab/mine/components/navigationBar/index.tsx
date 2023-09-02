@@ -1,15 +1,15 @@
+/* eslint-disable @typescript-eslint/no-shadow */
 import {
   StyleSheet,
   View,
   ImageBackground,
   TouchableOpacity,
 } from 'react-native';
-import React, {useContext} from 'react';
+import React from 'react';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
 import CommonFastImage from '~/components/common-fast-image';
 import CommonVectorIcon from '~/components/common-vector-icons';
 import {router, RouteNames} from '~/navigator/NavigationService';
-import {ThemeContext} from '~/theme';
 import CommonSafeArea from '~/components/common-safe-area';
 /**
 参考：https://blog.csdn.net/sinat_17775997/article/details/123948392
@@ -21,7 +21,6 @@ import CommonSafeArea from '~/components/common-safe-area';
  */
 function NavigationBar(props: any, ref: React.Ref<unknown> | undefined) {
   const insets = useSafeAreaInsets();
-  const {themeName, theme, changeTheme} = useContext(ThemeContext);
   const [info, setInfo] = React.useState<any>({});
   const [bgImageOpacity, setBgImageOpacity] = React.useState(0);
   const [infoOpacity, setInfoOpacity] = React.useState(1);
@@ -103,16 +102,10 @@ function NavigationBar(props: any, ref: React.Ref<unknown> | undefined) {
     router.push(RouteNames.DebugDemo);
   };
 
-  const onSwitchTheme = () => {
-    if (themeName === 'default') {
-      changeTheme('dark');
-    } else {
-      changeTheme('default');
-    }
-  };
+  const onSwitchTheme = () => {};
   /********************* 渲染 **************************/
   const renderTopSafeArea = () => {
-    return <CommonSafeArea type="top"></CommonSafeArea>;
+    return <CommonSafeArea type="top" />;
   };
   const renderNavigationBar = () => {
     const headImg = info?.topNavigationBar?.headImg ?? '';
@@ -144,7 +137,7 @@ function NavigationBar(props: any, ref: React.Ref<unknown> | undefined) {
             <CommonFastImage
               source={{uri: buttonIcon}}
               style={[styles.settingInfo, {opacity: infoOpacity}]}
-              tintColor={theme.colors.btn_tintColor}
+              tintColor={'black'}
             />
           </TouchableOpacity>
         </View>

@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-shadow */
 import {
   StyleSheet,
   View,
@@ -19,7 +18,7 @@ import React, {
 const dimen = Dimensions.get('window');
 const deviceWidth = dimen.width;
 
-interface Props {
+type Props = {
   style?: StyleProp<ViewStyle> | undefined;
   textAtiveStyle?: StyleProp<ViewStyle> | undefined;
   textInactiveStyle?: StyleProp<ViewStyle> | undefined;
@@ -27,7 +26,7 @@ interface Props {
   initialSelectIndex?: number | undefined;
   ref?: React.Ref<unknown> | undefined;
   onChange?: ((index: number) => void) | undefined;
-}
+};
 
 const CommonSegement = (
   {
@@ -103,8 +102,8 @@ const CommonSegement = (
 
     var left = 0;
     for (let i = 0; i < data.length; i++) {
-      const element = data[i];
-      const lablayout = layoutInfoMap[element.name];
+      const item = data[i];
+      const lablayout = layoutInfoMap[item.name];
       if (lablayout !== undefined) {
         if (i < index) {
           left += lablayout.width;

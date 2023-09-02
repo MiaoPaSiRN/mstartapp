@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-shadow */
 /**
  * Created by jackson on 2018/08/13.
  * 富文本
@@ -16,11 +15,10 @@ import {
 } from 'react-native';
 import React, {useState} from 'react';
 
-const ScreenHeight = Dimensions.get('window').height;
 const ScreenWidth = Dimensions.get('window').width;
 const defaultMinHeight = 100;
 
-interface IProps {
+type IProps = {
   style?: StyleProp<ViewStyle>;
   inputStyle?: StyleProp<TextStyle>;
   maxLength?: number | undefined;
@@ -30,7 +28,7 @@ interface IProps {
   onChangeText?: ((text: string) => void) | undefined;
   showCount?: boolean | undefined;
   editable?: boolean | undefined;
-}
+};
 
 //模块声名并导出
 export default function CommonRichTextView({
@@ -66,8 +64,8 @@ export default function CommonRichTextView({
           underlineColorAndroid={'transparent'}
           maxLength={maxLength}
           defaultValue={text}
-          onChangeText={text => {
-            props.onChangeText && props.onChangeText(text);
+          onChangeText={value => {
+            props.onChangeText && props.onChangeText(value);
             setText(text);
           }}
         />

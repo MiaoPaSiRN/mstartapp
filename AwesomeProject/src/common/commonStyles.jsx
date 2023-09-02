@@ -1,6 +1,10 @@
 import {StyleSheet} from 'react-native';
 
 const commonStyles = StyleSheet.create({
+  page: {
+    flex: 1,
+    backgroundColor: '#EEE',
+  },
   container: {
     paddingHorizontal: 10,
     marginBottom: 15,

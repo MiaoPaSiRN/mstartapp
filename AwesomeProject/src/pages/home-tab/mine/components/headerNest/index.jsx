@@ -20,8 +20,8 @@ class HeaderNest extends Component {
     var floorsArr = personinfoBusinessData.floors ?? [];
     // 对楼层数据排序
     var floors = floorsArr.sort((a, b) => {
-      var value1 = a['sortId'];
-      var value2 = b['sortId'];
+      var value1 = a.sortId;
+      var value2 = b.sortId;
       return value1 - value2;
     });
 
@@ -50,13 +50,13 @@ class HeaderNest extends Component {
     } else if (refId === 'toolIcon') {
       return <ToolIconFloor key={refId} floor={item} floors={floors} />;
     } else if (refId === 'wodeguanzhu') {
-      // return <WodeguanzhuFloor key={refId}></WodeguanzhuFloor>;
+      return <WodeguanzhuFloor key={refId} />;
     } else if (refId === 'wodezhuanshu') {
-      return <WodezhuanshuFloor key={refId} floor={item} floors={floors} />;
+      // return <WodezhuanshuFloor key={refId} floor={item} floors={floors} />;
     } else if (refId === 'platCardFloor') {
       return <PlatCardFloor key={refId} floor={item} floors={floors} />;
     } else if (refId === 'recommendfloor') {
-      // return <RecommendFloor key={refId}></RecommendFloor>;
+      return <RecommendFloor key={refId} />;
     } else if (refId === 'buyOften') {
       return <BuyOftenFloor key={refId} floor={item} floors={floors} />;
     }
@@ -69,8 +69,8 @@ class HeaderNest extends Component {
     var floorsArr = personinfoBusinessData.floors ?? [];
     // 对楼层数据排序
     var floors = floorsArr.sort((a, b) => {
-      var value1 = a['sortId'];
-      var value2 = b['sortId'];
+      var value1 = a.sortId;
+      var value2 = b.sortId;
       return value1 - value2;
     });
 

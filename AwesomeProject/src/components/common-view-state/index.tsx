@@ -6,7 +6,6 @@ import {
   ActivityIndicator,
 } from 'react-native';
 import React from 'react';
-import ContentLoader, {Facebook} from 'react-content-loader/native';
 export enum ViewState {
   default = -1, // 默认
   success = 1, // 加载中
@@ -81,7 +80,7 @@ const styles = StyleSheet.create({
     left: 0,
     bottom: 0,
     right: 0,
-    backgroundColor: '#FFF',
+    backgroundColor: '#EEE',
   },
   titleStyle: {
     fontSize: 15,

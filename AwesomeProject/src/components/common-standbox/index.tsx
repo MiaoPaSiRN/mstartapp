@@ -1,5 +1,5 @@
-import {StyleSheet, Text, View, ScrollView} from 'react-native';
-import React, {useState, useContext, useEffect} from 'react';
+import {StyleSheet, ScrollView} from 'react-native';
+import React, {useState, useEffect} from 'react';
 import {RNFSUtil} from '~/utils';
 import FaDirItem from './fa-dir';
 export default function CommonStandBoxScreen() {

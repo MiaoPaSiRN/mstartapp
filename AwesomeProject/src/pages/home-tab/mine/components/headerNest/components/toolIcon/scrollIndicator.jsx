@@ -1,5 +1,5 @@
-import React, {Component} from 'react';
-import {Text, StyleSheet, TouchableOpacity, Animated, View} from 'react-native';
+import React from 'react';
+import {Animated, View} from 'react-native';
 
 export default function ScrollIndicator(props) {
   const {containerWidth, indicatorWidth, translateX} = props;
@@ -23,7 +23,8 @@ export default function ScrollIndicator(props) {
             width: indicatorWidth,
             height: 4,
             transform: [{translateX: translateX}],
-          }}></Animated.View>
+          }}
+        />
       </View>
     </View>
   );

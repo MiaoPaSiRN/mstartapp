@@ -1,6 +1,5 @@
 import {Text, StyleSheet, View} from 'react-native';
 import React, {Component} from 'react';
-import CommonFastImage from '~/components/common-fast-image';
 
 export default class WodezhuanshuFloor extends Component {
   constructor(props) {
@@ -13,7 +12,7 @@ export default class WodezhuanshuFloor extends Component {
         <View style={styles.card}>
           <ContentView {...this.props} />
         </View>
-        <View style={{height: 5}}></View>
+        <View style={{height: 5}} />
       </View>
     );
   }

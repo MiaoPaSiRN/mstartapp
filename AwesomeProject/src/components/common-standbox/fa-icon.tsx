@@ -1,4 +1,4 @@
-import {StyleSheet, Text, View} from 'react-native';
+import {StyleSheet} from 'react-native';
 import React from 'react';
 import CommonVectorIcon from '~/components/common-vector-icons';
 import RNFS from 'react-native-fs';

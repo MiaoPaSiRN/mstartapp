@@ -1,6 +1,5 @@
 import {Text, StyleSheet, View, TouchableOpacity} from 'react-native';
 import React, {Component, PureComponent} from 'react';
-import {ThemeContext} from '~/theme';
 import {router, RouteNames} from '~/navigator/NavigationService';
 export default class DingdanchaxunFloor extends Component {
   constructor(props) {
@@ -9,22 +8,13 @@ export default class DingdanchaxunFloor extends Component {
 
   render() {
     return (
-      <ThemeContext.Consumer>
-        {themeContext => {
-          const card_theme = {
-            backgroundColor: themeContext.theme.colors.view_bg,
-          };
-          return (
-            <View style={styles.container}>
-              <View style={[styles.card, card_theme]}>
-                <TopBar />
-                <BottomListView {...this.props} />
-              </View>
-              <View style={{height: 5}}></View>
-            </View>
-          );
-        }}
-      </ThemeContext.Consumer>
+      <View style={styles.container}>
+        <View style={[styles.card]}>
+          <TopBar />
+          <BottomListView {...this.props} />
+        </View>
+        <View style={{height: 5}} />
+      </View>
     );
   }
 }
@@ -36,6 +26,7 @@ const styles = StyleSheet.create({
   card: {
     borderRadius: 15,
     overflow: 'hidden',
+    backgroundColor: '#FFF',
   },
 });
 
@@ -58,32 +49,20 @@ class TopBar extends PureComponent {
       {name: '浏览记录', icon: 'cruling', value: '3'},
     ];
     return (
-      <ThemeContext.Consumer>
-        {themeContext => {
-          const title_theme = {
-            color: themeContext.theme.colors.app_bar_text_color,
-          };
-
+      <View style={topBarStyles.container}>
+        {list.map((item, index) => {
+          const {name, icon, value} = item;
           return (
-            <View style={topBarStyles.container}>
-              {list.map((item, index) => {
-                const {name, icon, value} = item;
-                return (
-                  <TouchableOpacity
-                    key={name}
-                    style={topBarStyles.item}
-                    onPress={() => this.handlePress(item)}>
-                    <View
-                      style={{width: 25, height: 25, backgroundColor: '#EEE'}}
-                    />
-                    <Text style={[{fontSize: 13}, title_theme]}>{name}</Text>
-                  </TouchableOpacity>
-                );
-              })}
-            </View>
+            <TouchableOpacity
+              key={name}
+              style={topBarStyles.item}
+              onPress={() => this.handlePress(item)}>
+              <View style={{width: 25, height: 25, backgroundColor: '#EEE'}} />
+              <Text style={[{fontSize: 13}]}>{name}</Text>
+            </TouchableOpacity>
           );
-        }}
-      </ThemeContext.Consumer>
+        })}
+      </View>
     );
   }
 }
@@ -126,42 +105,24 @@ class BottomListView extends Component {
       {name: '我的订单', icon: 'cruling', value: '3'},
     ];
     return (
-      <ThemeContext.Consumer>
-        {themeContext => {
-          const title_theme = {
-            color: themeContext.theme.colors.app_bar_text_color,
-          };
-          const subtitle_theme = {
-            color: themeContext.theme.colors.app_bar_text_color,
-          };
-          return (
-            <View style={bottomStyles.container}>
-              {list.map((item, index) => {
-                const {name, icon, value} = item;
+      <View style={bottomStyles.container}>
+        {list.map((item, index) => {
+          const {name, icon, value} = item;
 
-                return (
-                  <TouchableOpacity
-                    key={name}
-                    style={bottomStyles.item}
-                    onPress={() => this.handlePress(item)}>
-                    <View
-                      style={{width: 25, height: 25, backgroundColor: '#EEE'}}
-                    />
-                    <Text style={[bottomStyles.title, title_theme]}>
-                      {name}
-                    </Text>
-                    {name === '我的订单' ? (
-                      <Text style={[bottomStyles.subtitle, subtitle_theme]}>
-                        查看电子发票
-                      </Text>
-                    ) : undefined}
-                  </TouchableOpacity>
-                );
-              })}
-            </View>
+          return (
+            <TouchableOpacity
+              key={name}
+              style={bottomStyles.item}
+              onPress={() => this.handlePress(item)}>
+              <View style={{width: 25, height: 25, backgroundColor: '#EEE'}} />
+              <Text style={[bottomStyles.title]}>{name}</Text>
+              {name === '我的订单' ? (
+                <Text style={[bottomStyles.subtitle]}>查看电子发票</Text>
+              ) : undefined}
+            </TouchableOpacity>
           );
-        }}
-      </ThemeContext.Consumer>
+        })}
+      </View>
     );
   }
 }

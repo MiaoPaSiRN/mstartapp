@@ -8,7 +8,6 @@ import {
   Dimensions,
 } from 'react-native';
 import React, {Component, PureComponent} from 'react';
-import {ThemeContext} from '~/theme';
 import SmallItem from './item';
 import ScrollIndicator from './scrollIndicator';
 
@@ -21,22 +20,12 @@ export default class GameIconFloor extends PureComponent {
 
   render() {
     return (
-      <ThemeContext.Consumer>
-        {themeContext => {
-          const card_theme = {
-            backgroundColor: themeContext.theme.colors.view_bg,
-          };
-
-          return (
-            <View style={styles.container}>
-              <View style={[styles.card, card_theme]}>
-                <ContentView {...this.props} />
-              </View>
-              <View style={{height: 5}}></View>
-            </View>
-          );
-        }}
-      </ThemeContext.Consumer>
+      <View style={styles.container}>
+        <View style={[styles.card]}>
+          <ContentView {...this.props} />
+        </View>
+        <View style={{height: 5}} />
+      </View>
     );
   }
 }
@@ -48,6 +37,7 @@ const styles = StyleSheet.create({
   card: {
     borderRadius: 15,
     overflow: 'hidden',
+    backgroundColor: '#FFF',
   },
 });
 

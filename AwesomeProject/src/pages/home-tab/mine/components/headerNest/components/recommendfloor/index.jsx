@@ -1,3 +1,4 @@
+/* eslint-disable no-shadow */
 import React, {Component} from 'react';
 import {
   Text,
@@ -7,7 +8,7 @@ import {
   TouchableOpacity,
   DeviceEventEmitter,
 } from 'react-native';
-import {fetchUniformRecommendTabs} from '~/api/jingdong';
+import {commonService} from '~/api/common-service';
 
 export default class RecommendFloor extends Component {
   constructor(props) {
@@ -24,7 +25,8 @@ export default class RecommendFloor extends Component {
   }
 
   loadFirstPage() {
-    fetchUniformRecommendTabs()
+    commonService
+      .fetchUniformRecommendTabs()
       .then(response => {
         const tabs = response.tabs;
         if (tabs.length > 0) {

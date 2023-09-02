@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Text, StyleSheet, View} from 'react-native';
+import {StyleSheet} from 'react-native';
 import {AMapSdk, MapType, MapView} from 'react-native-amap3d';
 import {Platform} from 'react-native';
 

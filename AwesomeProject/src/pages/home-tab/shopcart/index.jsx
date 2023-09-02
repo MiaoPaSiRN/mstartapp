@@ -1,10 +1,8 @@
 import React, {Component} from 'react';
-import {Text, StyleSheet, View, Button, FlatList} from 'react-native';
-import {ThemeContext} from '~/theme';
+import {StyleSheet} from 'react-native';
 import CommonScreen from '~/components/common-screen';
 import CommonSafeArea from '~/components/common-safe-area';
-import APShopcartCell from './APShopcartCell';
-import Father from './father';
+import CommonStateView, {ViewState} from '~/components/common-view-state';
 export default class ShopcartScreen extends Component {
   constructor(props) {
     super(props);
@@ -23,21 +21,10 @@ export default class ShopcartScreen extends Component {
   }
 
   render() {
-    const {routeInfo, datas} = this.state;
     return (
       <CommonScreen appbar={{title: '购物车', showBack: false}}>
-        <View style={[styles.container]}>
-          <CommonSafeArea></CommonSafeArea>
-          <Father></Father>
-          <FlatList
-            data={datas}
-            style={[styles.gridView]}
-            initialNumToRender={30}
-            renderItem={({item, index}) => {
-              return <APShopcartCell key={index} data={item} />;
-            }}
-          />
-        </View>
+        <CommonSafeArea />
+        <CommonStateView viewState={ViewState.empty} />
       </CommonScreen>
     );
   }

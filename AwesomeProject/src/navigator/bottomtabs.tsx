@@ -2,15 +2,12 @@
 import {StyleSheet, Image} from 'react-native';
 import React, {useContext, useEffect} from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import {ThemeContext} from '~/theme';
 
 import HomeScreen from '~/pages/home-tab/home';
 import NewsScreen from '~/pages/home-tab/news';
 import DiscoverScreen from '~/pages/home-tab/discover';
 import ShopcarScreen from '~/pages/home-tab/shopcart';
 import MineScreen from '~/pages/home-tab/mine';
-
-import {router, RouteNames} from './NavigationService';
 
 const Tab = createBottomTabNavigator();
 
@@ -20,7 +17,6 @@ type IProps = {
 };
 
 function Bottomtabs(props: IProps) {
-  const {theme} = useContext(ThemeContext);
   /********************* Effect Hook **************************/
   //类似类组件的componentDidMount
   useEffect(() => {
@@ -58,9 +54,7 @@ function Bottomtabs(props: IProps) {
         style={{
           width: props.size,
           height: props.size,
-          tintColor: props.focused
-            ? theme.colors.tabbar_active_tint
-            : theme.colors.tabbar_inactive_tint,
+          tintColor: props.focused ? 'rgba(0,0,0,1)' : 'rgba(0,0,0,0.5)',
         }}
         source={source}
       />
@@ -72,9 +66,9 @@ function Bottomtabs(props: IProps) {
       screenOptions={({route}) => ({
         headerShown: false,
         tabBarIcon: props => renderTabBarIcon(route, props),
-        tabBarActiveTintColor: theme.colors.tabbar_active_tint,
-        tabBarInactiveTintColor: theme.colors.tabbar_inactive_tint,
-        tabBarStyle: {backgroundColor: theme.colors.tabbar_bg},
+        tabBarActiveTintColor: 'rgba(0,0,0,1)',
+        tabBarInactiveTintColor: 'rgba(0,0,0,0.5)',
+        tabBarStyle: {backgroundColor: '#FFF'},
       })}
       screenListeners={({navigation}) => ({
         state: e => {

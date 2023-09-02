@@ -1,6 +1,5 @@
 import {Text, StyleSheet, View, TouchableOpacity} from 'react-native';
 import React, {Component} from 'react';
-import {ThemeContext} from '~/theme';
 
 export default class WodeqianbaoFloor extends Component {
   constructor(props) {
@@ -9,22 +8,12 @@ export default class WodeqianbaoFloor extends Component {
 
   render() {
     return (
-      <ThemeContext.Consumer>
-        {themeContext => {
-          const card_theme = {
-            backgroundColor: themeContext.theme.colors.view_bg,
-          };
-
-          return (
-            <View style={styles.container}>
-              <View style={[styles.card, card_theme]}>
-                <BottomListView {...this.props} />
-              </View>
-              <View style={{height: 5}}></View>
-            </View>
-          );
-        }}
-      </ThemeContext.Consumer>
+      <View style={styles.container}>
+        <View style={[styles.card]}>
+          <BottomListView {...this.props} />
+        </View>
+        <View style={{height: 5}} />
+      </View>
     );
   }
 }
@@ -36,6 +25,7 @@ const styles = StyleSheet.create({
   card: {
     borderRadius: 15,
     overflow: 'hidden',
+    backgroundColor: '#FFF',
   },
 });
 
@@ -52,94 +42,69 @@ class BottomListView extends Component {
   };
 
   _renderNumContent = functionId => {
-    return (
-      <ThemeContext.Consumer>
-        {themeContext => {
-          const title_theme = {
-            color: themeContext.theme.colors.app_bar_text_color,
-          };
-          const {encStr} = this.props.floor.data;
-          let numContent;
-          if (functionId === 'jindou') {
-            numContent = (
-              <View>
-                <Text style={[bottomStyles.numContentStyle, title_theme]}>
-                  {encStr?.jindou?.numContent}
-                </Text>
-              </View>
-            );
-          } else if (functionId === 'youhuiquan') {
-            numContent = (
-              <View>
-                <Text style={[bottomStyles.numContentStyle, title_theme]}>
-                  {encStr?.youhuiquan?.numContent}
-                </Text>
-              </View>
-            );
-          } else if (functionId === 'wodebaitiao') {
-            numContent = (
-              <View style={bottomStyles.numContent}>
-                <Text style={[bottomStyles.numContentStyle, title_theme]}>
-                  {encStr?.wodebaitiao?.numContent}
-                </Text>
-                <Text style={{fontSize: 11, color: '#666'}}>元</Text>
-              </View>
-            );
-          } else if (functionId === 'wodejintiao') {
-            numContent = (
-              <View style={bottomStyles.numContent}>
-                <Text style={[bottomStyles.numContentStyle, title_theme]}>
-                  {encStr?.wodejintiao?.numContent}
-                </Text>
-                <Text style={{fontSize: 11, color: title_theme.color}}>万</Text>
-              </View>
-            );
-          } else if (functionId === 'qianbaochaxun') {
-            numContent = (
-              <View style={{width: 25, height: 25, backgroundColor: '#EEE'}} />
-            );
-          }
-          return numContent;
-        }}
-      </ThemeContext.Consumer>
-    );
+    const {encStr} = this.props.floor.data;
+    let numContent;
+    if (functionId === 'jindou') {
+      numContent = (
+        <View>
+          <Text style={[bottomStyles.numContentStyle]}>
+            {encStr?.jindou?.numContent}
+          </Text>
+        </View>
+      );
+    } else if (functionId === 'youhuiquan') {
+      numContent = (
+        <View>
+          <Text style={[bottomStyles.numContentStyle]}>
+            {encStr?.youhuiquan?.numContent}
+          </Text>
+        </View>
+      );
+    } else if (functionId === 'wodebaitiao') {
+      numContent = (
+        <View style={bottomStyles.numContent}>
+          <Text style={[bottomStyles.numContentStyle]}>
+            {encStr?.wodebaitiao?.numContent}
+          </Text>
+          <Text style={{fontSize: 11, color: '#666'}}>元</Text>
+        </View>
+      );
+    } else if (functionId === 'wodejintiao') {
+      numContent = (
+        <View style={bottomStyles.numContent}>
+          <Text style={[bottomStyles.numContentStyle]}>
+            {encStr?.wodejintiao?.numContent}
+          </Text>
+          <Text style={{fontSize: 11, color: 'red'}}>万</Text>
+        </View>
+      );
+    } else if (functionId === 'qianbaochaxun') {
+      numContent = (
+        <View style={{width: 25, height: 25, backgroundColor: '#EEE'}} />
+      );
+    }
+    return numContent;
   };
 
   render() {
     const {walletList} = this.props.floor.data;
     return (
-      <ThemeContext.Consumer>
-        {themeContext => {
-          const title_theme = {
-            color: themeContext.theme.colors.app_bar_text_color,
-          };
-          const subtitle_theme = {
-            color: themeContext.theme.colors.app_bar_text_color,
-          };
-          return (
-            <View style={bottomStyles.container}>
-              {walletList.map((item, index) => {
-                const {functionId, title, subtitle} = item;
+      <View style={bottomStyles.container}>
+        {walletList.map((item, index) => {
+          const {functionId, title, subtitle} = item;
 
-                return (
-                  <TouchableOpacity
-                    key={functionId}
-                    style={bottomStyles.item}
-                    onPress={() => this.handlePress(item)}>
-                    {this._renderNumContent(functionId)}
-                    <Text style={[bottomStyles.title, title_theme]}>
-                      {title.value}
-                    </Text>
-                    <Text style={[bottomStyles.subtitle, subtitle_theme]}>
-                      {subtitle.value}
-                    </Text>
-                  </TouchableOpacity>
-                );
-              })}
-            </View>
+          return (
+            <TouchableOpacity
+              key={functionId}
+              style={bottomStyles.item}
+              onPress={() => this.handlePress(item)}>
+              {this._renderNumContent(functionId)}
+              <Text style={[bottomStyles.title]}>{title.value}</Text>
+              <Text style={[bottomStyles.subtitle]}>{subtitle.value}</Text>
+            </TouchableOpacity>
           );
-        }}
-      </ThemeContext.Consumer>
+        })}
+      </View>
     );
   }
 }

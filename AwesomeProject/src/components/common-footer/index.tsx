@@ -21,10 +21,10 @@ export enum FooterState {
   error = 3, // 报错了
 }
 
-interface Props {
+type Props = {
   footerState: FooterState; //cell的样式
   onPress?: ((event: any) => void) | undefined;
-}
+};
 
 const CommonFooter = ({footerState, onPress}: Props) => {
   const render = () => {

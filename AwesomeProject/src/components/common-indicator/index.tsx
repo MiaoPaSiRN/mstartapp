@@ -1,13 +1,13 @@
 import {StyleProp, StyleSheet, View, ViewStyle} from 'react-native';
 import React from 'react';
 
-interface Props {
+type Props = {
   count: number;
   currentIndex: number;
   style?: StyleProp<ViewStyle> | undefined;
   activeStyle?: StyleProp<ViewStyle> | undefined;
   inActiveStyle?: StyleProp<ViewStyle> | undefined;
-}
+};
 
 const createIndicatorItems = (indicatorItems: any) => {
   const res = [];

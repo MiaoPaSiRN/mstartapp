@@ -1,4 +1,4 @@
-import React, {Component, PureComponent} from 'react';
+import React, {PureComponent} from 'react';
 import {Text, StyleSheet, TouchableOpacity, FlatList, View} from 'react-native';
 import CommonFastImage from '~/components/common-fast-image';
 
@@ -6,11 +6,11 @@ export default class SmallItem extends PureComponent {
   render() {
     const width = this.props.width ?? 50;
     const data = this.props.data ?? {};
-    const contentInfo = data['contentInfo'] ?? {};
+    const contentInfo = data.contentInfo ?? {};
 
-    const functionId = data['functionId'] ?? '';
-    const title = data['title'] ?? '测试数据';
-    const safeImage = contentInfo['safeImage'] ?? '';
+    const functionId = data.functionId ?? '';
+    const title = data.title ?? '测试数据';
+    const safeImage = contentInfo.safeImage ?? '';
 
     return (
       <TouchableOpacity
@@ -36,7 +36,7 @@ export default class SmallItem extends PureComponent {
 
   renderRedDotInfoList = data => {
     const width = this.props.width ?? 50;
-    const redDotInfoList = data['redDotInfoList'] ?? [];
+    const redDotInfoList = data.redDotInfoList ?? [];
 
     const bubbleTextSty = {fontSize: 10, color: '#FFF', paddingHorizontal: 3};
     const bubbleTextIconSty = {width: 10, height: 10};

@@ -1,4 +1,5 @@
-import React, {useState, useContext, useRef} from 'react';
+/* eslint-disable react/no-unstable-nested-components */
+import React, {useState, useRef} from 'react';
 import {
   StyleSheet,
   Text,
@@ -7,7 +8,6 @@ import {
   ActivityIndicator,
   RefreshControl,
 } from 'react-native';
-import {ThemeContext} from '~/theme';
 import CommonScreen from '~/components/common-screen';
 import HeaderNest from './components/headerNest';
 import NavigationBar from './components/navigationBar';
@@ -27,9 +27,13 @@ const MineScreen = () => {
 
   // 下拉刷新
   const handleRefreshData = () => {
-    if (refreshing) return;
+    if (refreshing) {
+      return;
+    }
     console.log('setRefreshing(true)');
-    if (listData === null) setRefreshing(true);
+    if (listData === null) {
+      setRefreshing(true);
+    }
 
     commonService
       .fetchPersoninfoBusiness()
@@ -52,7 +56,7 @@ const MineScreen = () => {
 
   /// [回调]:FlatList触底
   const onEndReached = () => {
-    console.log(`onEndReached`);
+    console.log('onEndReached');
   };
 
   const onRefreshing = () => {};

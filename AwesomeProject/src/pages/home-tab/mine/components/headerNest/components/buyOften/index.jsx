@@ -22,7 +22,7 @@ export default class BuyOftenFloor extends Component {
         <View style={styles.card}>
           <ContentView {...this.props} />
         </View>
-        <View style={{height: 5}}></View>
+        <View style={{height: 5}} />
       </View>
     );
   }
@@ -100,11 +100,3 @@ class ContentView extends Component {
     );
   }
 }
-
-const bottomStyles = StyleSheet.create({
-  container: {
-    flex: 1,
-    flexDirection: 'row',
-    backgroundColor: '#FFF',
-  },
-});

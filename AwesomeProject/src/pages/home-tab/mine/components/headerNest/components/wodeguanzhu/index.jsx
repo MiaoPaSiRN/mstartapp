@@ -1,6 +1,5 @@
 import {Text, StyleSheet, View} from 'react-native';
 import React, {Component} from 'react';
-import CommonFastImage from '~/components/common-fast-image';
 
 export default class WodeguanzhuFloor extends Component {
   constructor(props) {

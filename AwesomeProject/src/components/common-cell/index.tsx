@@ -7,10 +7,8 @@ import {
   StyleProp,
   Switch,
 } from 'react-native';
-import React, {useContext} from 'react';
-import {useSafeAreaInsets} from 'react-native-safe-area-context';
+import React from 'react';
 import CommonVectorIcon from '~/components/common-vector-icons';
-import {ThemeContext} from '~/theme';
 
 export interface CommonCellProps {
   style?: StyleProp<ViewStyle> | undefined;
@@ -33,19 +31,12 @@ export default function CommonCell({
   onPress,
   onValueChange,
 }: CommonCellProps) {
-  const insets = useSafeAreaInsets();
-  const {theme} = useContext(ThemeContext);
-  const container_theme = {backgroundColor: theme.colors.view_bg};
-  const text_theme = {color: theme.colors.app_bar_text_color};
-
   if (cellType === 'normal') {
     return (
-      <TouchableOpacity
-        style={[styles.container, style, container_theme]}
-        onPress={onPress}>
+      <TouchableOpacity style={[styles.container, style]} onPress={onPress}>
         <View style={[styles.leftContainer]}>
-          <Text style={[styles.title, text_theme]}>{title}</Text>
-          <Text style={[styles.subtitle, text_theme]}>{subtitle}</Text>
+          <Text style={[styles.title]}>{title}</Text>
+          <Text style={[styles.subtitle]}>{subtitle}</Text>
         </View>
         <View style={[showRedDot ? styles.redDot : styles.redDot1]} />
         <CommonVectorIcon name={'chevron-right'} size={10} />
@@ -53,10 +44,10 @@ export default function CommonCell({
     );
   } else if (cellType === 'switch') {
     return (
-      <View style={[styles.container, style, container_theme]}>
+      <View style={[styles.container, style]}>
         <View style={[styles.leftContainer]}>
-          <Text style={[styles.title, text_theme]}>{title}</Text>
-          <Text style={[styles.subtitle, text_theme]}>{subtitle}</Text>
+          <Text style={[styles.title]}>{title}</Text>
+          <Text style={[styles.subtitle]}>{subtitle}</Text>
         </View>
         <View style={[showRedDot ? styles.redDot : styles.redDot1]} />
         <Switch value={switchValue} onValueChange={onValueChange} />
@@ -78,7 +69,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-
     backgroundColor: 'white',
   },
   leftContainer: {

@@ -12,7 +12,7 @@ export default class UserimageFloor extends Component {
 
   getTopSafeArea = () => {
     const marginTop = Math.max(this.safeAreaInsets.top, 22);
-    return <View style={{marginTop: marginTop, height: 44}}></View>;
+    return <View style={{marginTop: marginTop, height: 44}} />;
   };
 
   render() {
@@ -56,7 +56,7 @@ class UserInfoSns extends Component {
     const {jingxiangCredit} = this.props.data;
     return (
       <View style={{flex: 1, flexDirection: 'row', flexWrap: 'wrap'}}>
-        {jingxiangCredit.map((item, index) => {
+        {jingxiangCredit.map(item => {
           const {functionId} = item;
           let text = item?.text;
           if (!extraUtil.isNullStr(item?.encStr?.text)) {
@@ -86,7 +86,6 @@ class UserInfoSns extends Component {
   render() {
     const {
       userInfoSns: {imgUrl, title},
-      jingxiangCredit,
     } = this.props.data;
     return (
       <View style={{flexDirection: 'row'}}>
@@ -124,7 +123,7 @@ class NewPlusBlackCard extends Component {
           flexWrap: 'wrap',
           paddingVertical: 10,
         }}>
-        {list.map((item, index) => {
+        {list.map(item => {
           const {imageUrl, title, subtitle} = item;
           const titleStyle = {color: title?.color, fontSize: 13};
           const subtitleStyle = {color: subtitle?.color, fontSize: 12};

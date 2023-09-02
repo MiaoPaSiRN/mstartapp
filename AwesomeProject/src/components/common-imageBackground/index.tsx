@@ -1,4 +1,4 @@
-import {StyleProp, StyleSheet, Text, View, ViewStyle} from 'react-native';
+import {StyleProp, StyleSheet, View, ViewStyle} from 'react-native';
 import React from 'react';
 import FastImage, {FastImageProps} from 'react-native-fast-image';
 import {extraUtil} from '~/utils';
