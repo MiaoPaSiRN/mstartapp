@@ -1,6 +1,5 @@
 import {StyleSheet, Text, View, Dimensions} from 'react-native';
 import React, {useEffect, useState} from 'react';
-import CommonFastImage from '~/components/common-fast-image';
 import JDguojibrand from './components/JDguojibrand';
 import PNbpBrightpoint from './components/bpBrightpoint';
 import PNbpBangDan from './components/bpBangDan';
@@ -9,8 +8,6 @@ import PNbpMember from './components/bpMember';
 import PNbpAggrePromo from './components/bpAggrePromo';
 import PNbpCommonBanner from './components/bpCommonBanner';
 import {ProductUtils} from '../../utils/ProductUtils';
-
-const DEVICE_WIDTH = Dimensions.get('window').width;
 
 export default function PNbpName(props: any) {
   const [wareInfo, setWareInfo] = useState<any>({});

@@ -1,11 +1,9 @@
 import {BackHandler, Platform, StyleSheet} from 'react-native';
-import React, {useContext, useState, useEffect} from 'react';
-// import {ProgressView} from '@react-native-community/progress-view';
+import React, {useState, useEffect} from 'react';
 import {WebView} from 'react-native-webview';
-import CommonVectorIcon from '~/components/common-vector-icons';
 import CommonSafeArea from '~/components/common-safe-area';
 import CommonScreen from '~/components/common-screen';
-import {router, RouteNames} from '~/navigator/NavigationService';
+import {router} from '~/navigator/NavigationService';
 import {globalToast} from '~/utils';
 export default function WebScreen(props: any) {
   const [url, setUrl] = useState(props.route?.params?.url ?? '');

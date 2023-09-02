@@ -24,7 +24,9 @@ export default function SettingScreen() {
 
   const onPress = (item: any) => {
     const {route} = item;
-    if (extraUtil.isNullStr(route)) return;
+    if (extraUtil.isNullStr(route)) {
+      return;
+    }
     router.push(route);
   };
 
@@ -42,7 +44,7 @@ export default function SettingScreen() {
           {section.data.map((item: any, index: number) => {
             const {title, subtitle, badge, type} = item;
             if (type === 'userInfo') {
-              return <SettingUserInfoView key={title}></SettingUserInfoView>;
+              return <SettingUserInfoView key={title} />;
             } else if (type === 'logout') {
               return (
                 <View key={title} style={[styles.logout, container_theme]}>
@@ -63,7 +65,7 @@ export default function SettingScreen() {
             );
           })}
         </View>
-        <View style={{height: 10}}></View>
+        <View style={{height: 10}} />
       </View>
     );
   };
@@ -71,7 +73,7 @@ export default function SettingScreen() {
   return (
     <CommonScreen appbar={{title: '设置'}}>
       <ScrollView style={{backgroundColor: '#EEE'}}>
-        <CommonSafeArea></CommonSafeArea>
+        <CommonSafeArea />
         <View>
           {sections.map((item: any, index: number) => {
             return _renderSECTION(index);

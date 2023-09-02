@@ -15,7 +15,7 @@ export default function OrderFilterView(props: any) {
 
   return (
     <ScrollView style={[styles.container, {backgroundColor: '#FFF'}]}>
-      <CommonSafeArea type="top"></CommonSafeArea>
+      <CommonSafeArea type="top" />
       {datas.map((item, index) => {
         return (
           <View
@@ -29,7 +29,7 @@ export default function OrderFilterView(props: any) {
           </View>
         );
       })}
-      <CommonSafeArea type="bottom"></CommonSafeArea>
+      <CommonSafeArea type="bottom" />
     </ScrollView>
   );
 }

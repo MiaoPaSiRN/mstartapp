@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-shadow */
 import {
   StyleSheet,
   Text,
@@ -15,7 +14,6 @@ import CommonCell from '~/components/common-cell';
 import CommonAlert from '~/components/common-alert';
 import CommonDialog from '~/components/common-dialog';
 import CommonStandBoxScreen from '~/components/common-standbox';
-import {ThemeContext} from '~/theme';
 import {
   DeviceStorage,
   extraUtil,
@@ -28,9 +26,6 @@ import {dataSource} from './default-data';
 import {router} from '~/navigator/NavigationService';
 
 export default function GeneralScreen() {
-  const {theme} = useContext(ThemeContext);
-  const container_theme = {backgroundColor: theme.colors.view_bg};
-  const title_theme = {color: theme.colors.app_bar_text_color};
   const [sections, setSections] = useState(copyUtil.deepCopy(dataSource));
   const [totalSize, setTotalSize] = useState(0);
 

@@ -1,5 +1,5 @@
 /* eslint-disable react/no-unstable-nested-components */
-/* eslint-disable @typescript-eslint/no-shadow */
+
 import * as React from 'react';
 import {
   Animated,

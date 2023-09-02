@@ -1,4 +1,4 @@
-import {StyleSheet, Text, View, ImageBackground} from 'react-native';
+import {StyleSheet, Text, View} from 'react-native';
 import React, {useState, useEffect} from 'react';
 import CommonFastImage from '~/components/common-fast-image';
 import CommonImageBackground from '~/components/common-imageBackground';

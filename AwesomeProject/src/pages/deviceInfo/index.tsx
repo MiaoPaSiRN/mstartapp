@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-shadow */
 import {StyleSheet, View, FlatList, Text} from 'react-native';
 import React, {useContext, useState, useEffect} from 'react';
 import DeviceInfo from 'react-native-device-info';

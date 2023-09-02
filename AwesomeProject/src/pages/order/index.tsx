@@ -1,14 +1,12 @@
-import {Dimensions, StyleSheet, Text, View} from 'react-native';
+import {StyleSheet} from 'react-native';
 import React, {useState, useEffect} from 'react';
 import CommonVectorIcon from '~/components/common-vector-icons';
 import CommonScreen from '~/components/common-screen';
 import CommonSafeArea from '~/components/common-safe-area';
-import OrderTabView from './components/order-tab-view';
 import CommonDialog from '~/components/common-dialog';
-import {ThemeContext} from '~/theme';
 import {globalShare} from '~/utils';
 import OrderFilterView from './components/filter';
-const DEVICE_WIDTH = Dimensions.get('window').width;
+import OrderTabView from './components/order-tab-view';
 
 const MyOrdersScreen = (props: any) => {
   console.log('MyOrdersScreen : props', props);
@@ -33,7 +31,7 @@ const MyOrdersScreen = (props: any) => {
       CommonDialog.popupMode.rightToLeft,
       () => globalShare.windowDialogRef?.hide(),
       () => {
-        return <OrderFilterView></OrderFilterView>;
+        return <OrderFilterView />;
       },
     );
   };
@@ -49,7 +47,7 @@ const MyOrdersScreen = (props: any) => {
           title: '订单',
           rightItem: _renderFilterBtn(),
         }}>
-        <CommonSafeArea></CommonSafeArea>
+        <CommonSafeArea />
         {ready ? (
           <OrderTabView initialIndex={props.route.params?.index ?? 0} />
         ) : undefined}

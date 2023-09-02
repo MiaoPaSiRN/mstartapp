@@ -44,7 +44,6 @@ export default class OrderTabView extends React.PureComponent {
           keyExtractor={(item, index) => index}
           renderItem={(item, index) => {
             const route = item;
-            console.log('route ', route);
             return (
               <TouchableOpacity
                 key={route.item.key}

@@ -1,6 +1,5 @@
-import {StyleSheet, Text, View, ScrollView, FlatList} from 'react-native';
+import {StyleSheet, Text, View, FlatList} from 'react-native';
 import React, {useState, useEffect} from 'react';
-import CommonFastImage from '~/components/common-fast-image';
 import {ProductUtils} from '../../utils/ProductUtils';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 
@@ -86,7 +85,7 @@ export default function PNbpschj(props: any) {
               key={index}
               style={styles.productView}
               onPress={() => {}}>
-              <View style={styles.productView_img}></View>
+              <View style={styles.productView_img} />
               <Text style={styles.productView_name}>{item}</Text>
             </TouchableOpacity>
           );

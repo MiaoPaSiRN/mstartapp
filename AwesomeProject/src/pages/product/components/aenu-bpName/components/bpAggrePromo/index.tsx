@@ -1,6 +1,5 @@
 import {StyleSheet, Text, View} from 'react-native';
 import React, {useState, useEffect} from 'react';
-import CommonFastImage from '~/components/common-fast-image';
 import {ProductUtils} from '../../../../utils/ProductUtils';
 
 export default function PNbpAggrePromo(props: any) {

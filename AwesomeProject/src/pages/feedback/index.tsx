@@ -1,15 +1,10 @@
 import {StyleSheet, Text, View, ScrollView} from 'react-native';
-import React, {useContext, useEffect} from 'react';
+import React, {useEffect} from 'react';
 import CommonScreen from '~/components/common-screen';
 import CommonSafeArea from '~/components/common-safe-area';
 import CommonRichTextView from '~/components/common-rich-text-view';
-import {ThemeContext} from '~/theme';
 
 export default function FeedBackScreen() {
-  const {theme} = useContext(ThemeContext);
-  const container_theme = {backgroundColor: theme.colors.view_bg};
-  const title_theme = {color: theme.colors.app_bar_text_color};
-
   /********************* Effect Hook **************************/
   //类似类组件的componentDidMount
   useEffect(() => {}, []);

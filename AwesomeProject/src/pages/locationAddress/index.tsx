@@ -1,5 +1,5 @@
-import {StyleSheet, View, FlatList, RefreshControl} from 'react-native';
-import React, {useContext, useState, useEffect} from 'react';
+import {StyleSheet} from 'react-native';
+import React, {useEffect} from 'react';
 import CommonAMap from './amap';
 import CommonScreen from '~/components/common-screen';
 

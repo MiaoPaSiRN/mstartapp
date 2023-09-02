@@ -1,7 +1,5 @@
-import {StyleSheet, View, FlatList, Text} from 'react-native';
-import React, {useContext, useState, useEffect} from 'react';
-import CommonSafeArea from '~/components/common-safe-area';
-import CommonScreen from '~/components/common-screen';
+import {StyleSheet, View, FlatList} from 'react-native';
+import React, {useState, useEffect} from 'react';
 import CommonStateView, {ViewState} from '~/components/common-view-state';
 import {CommonDataModelType1} from '~/common/common-model-type';
 import {productService} from '~/api/product-service';
@@ -10,6 +8,24 @@ import PNbpName from './components/aenu-bpName';
 import PNbpChoice from './components/aenu-bpChoice';
 import PNbpschj from './components/aenu-bpschj';
 import PNbpEvaluate from './components/aenu-bpEvaluate';
+
+const CardItem = (props: any) => {
+  const {cf, data, mId, sortId} = props.data;
+  let child;
+  if (mId === 'bpMainImage') {
+    return <PNbpMainImage data={props.data} fullData={props.fullData} />;
+  } else if (mId === 'bpName') {
+    return <PNbpName data={props.data} fullData={props.fullData} />;
+  } else if (mId === 'bpChoice') {
+    return <PNbpChoice data={props.data} fullData={props.fullData} />;
+  } else if (mId === 'bpschj') {
+    return <PNbpschj data={props.data} fullData={props.fullData} />;
+  } else if (mId === 'bpEvaluate') {
+    return <PNbpEvaluate data={props.data} fullData={props.fullData} />;
+  }
+  return <View />;
+};
+
 export default function ProductScreen(props: any) {
   const routeParams = props.route.params;
   // const shopId = routeParams['shopId'] ?? '';
@@ -71,7 +87,6 @@ export default function ProductScreen(props: any) {
         onEndReachedThreshold={0.01}
         renderItem={({item, index}) => {
           const {sortId, mId} = item;
-          console.log('mId:', mId);
           return <CardItem key={index} data={item} fullData={wareBusiness} />;
         }}
       />
@@ -96,44 +111,3 @@ const styles = StyleSheet.create({
     flex: 1,
   },
 });
-
-const CardItem = (props: any) => {
-  const {cf, data, mId, sortId} = props.data;
-  let child;
-  if (mId === 'bpMainImage') {
-    return <PNbpMainImage data={props.data} fullData={props.fullData} />;
-  } else if (mId === 'bpName') {
-    return <PNbpName data={props.data} fullData={props.fullData} />;
-  } else if (mId === 'bpChoice') {
-    return <PNbpChoice data={props.data} fullData={props.fullData} />;
-  } else if (mId === 'bpschj') {
-    return <PNbpschj data={props.data} fullData={props.fullData} />;
-  } else if (mId === 'bpEvaluate') {
-    return <PNbpEvaluate data={props.data} fullData={props.fullData} />;
-  }
-  return <View></View>;
-  return (
-    <View
-      style={{
-        backgroundColor: '#EEE',
-        borderColor: 'red',
-        borderWidth: 1,
-        paddingHorizontal: 10,
-        paddingBottom: 10,
-      }}>
-      <View
-        style={{
-          backgroundColor: cf.bgc,
-          borderColor: 'red',
-          borderWidth: 1,
-          padding: 10,
-        }}>
-        {child ?? (
-          <Text>
-            {sortId}-{mId}
-          </Text>
-        )}
-      </View>
-    </View>
-  );
-};

@@ -1,7 +1,6 @@
-import React, { useContext, useState } from "react";
-import { StyleSheet, Text, View, TouchableOpacity, Image } from "react-native";
-import FontAwesome from "react-native-vector-icons/FontAwesome";
-import { ThemeContext } from "~/theme";
+import React, {useContext, useState} from 'react';
+import {StyleSheet, Text, View, TouchableOpacity, Image} from 'react-native';
+import FontAwesome from 'react-native-vector-icons/FontAwesome';
 
 // 对标签属性进行类型、必要性的限制
 interface Props {
@@ -16,41 +15,32 @@ interface Props {
 }
 
 const SettingUserInfoView = (props: Props) => {
-  const { theme } = useContext(ThemeContext);
-  const container_theme = {
-    backgroundColor: theme.colors.view_bg,
-    borderBottomColor: "#EEEEEE",
-  };
-  const text_theme = { color: theme.colors.app_bar_text_color };
   const [info, setInfo] = useState({
-    accountName: "我不是寻宝鼠",
-    nickName: "我不是寻宝鼠~~~",
+    accountName: '我不是寻宝鼠',
+    nickName: '我不是寻宝鼠~~~',
   });
 
   const _renderLeft = () => {
-    const { accountName, nickName } = info;
+    const {accountName, nickName} = info;
     return (
       <View style={[styles.leftContainer]}>
         <Image
-          style={{ width: 50, height: 50 }}
-          source={{ uri: "https://reactnative.dev/img/tiny_logo.png" }}
+          style={{width: 50, height: 50}}
+          source={{uri: 'https://reactnative.dev/img/tiny_logo.png'}}
         />
-        <View style={[{ flex: 1, borderColor: "transparent", borderWidth: 1 }]}>
-          <Text style={[styles.title, text_theme]}>{accountName}</Text>
-          <Text style={[styles.subtitle, text_theme]}>{nickName}</Text>
+        <View style={[{flex: 1, borderColor: 'transparent', borderWidth: 1}]}>
+          <Text style={[styles.title]}>{accountName}</Text>
+          <Text style={[styles.subtitle]}>{nickName}</Text>
         </View>
       </View>
     );
   };
 
   return (
-    <TouchableOpacity
-      style={[styles.container, container_theme]}
-      onPress={props.onPress}
-    >
+    <TouchableOpacity style={[styles.container]} onPress={props.onPress}>
       {_renderLeft()}
       <View style={[styles.redDot1]} />
-      <FontAwesome name={"chevron-right"} size={10} color={text_theme.color} />
+      <FontAwesome name={'chevron-right'} size={10} color={'black'} />
     </TouchableOpacity>
   );
 };
@@ -58,18 +48,18 @@ const SettingUserInfoView = (props: Props) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
     paddingVertical: 10,
     paddingHorizontal: 5,
     borderBottomWidth: 0.5,
   },
   leftContainer: {
     flex: 1,
-    flexDirection: "row",
-    justifyContent: "flex-start",
-    alignItems: "center",
+    flexDirection: 'row',
+    justifyContent: 'flex-start',
+    alignItems: 'center',
   },
   title: {
     fontSize: 15,
@@ -80,13 +70,13 @@ const styles = StyleSheet.create({
   redDot: {
     width: 5,
     height: 5,
-    backgroundColor: "red",
+    backgroundColor: 'red',
     marginHorizontal: 5,
   },
   redDot1: {
     width: 5,
     height: 5,
-    backgroundColor: "transparent",
+    backgroundColor: 'transparent',
     marginHorizontal: 5,
   },
 });

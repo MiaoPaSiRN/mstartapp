@@ -1,15 +1,8 @@
-import {
-  StyleSheet,
-  Text,
-  View,
-  ScrollView,
-  Dimensions,
-  Button,
-} from 'react-native';
-import React, {useState, useContext, useEffect} from 'react';
+import {StyleSheet, View, ScrollView, Dimensions, Button} from 'react-native';
+import React, {useState, useEffect} from 'react';
 import Lottie from 'lottie-react-native';
 import {router, RouteNames} from '~/navigator/NavigationService';
-import {CommonAsyncStorage, extraUtil} from '~/utils';
+import {CommonAsyncStorage} from '~/utils';
 
 const DEVICE_WIDTH = Dimensions.get('window').width;
 //引导页

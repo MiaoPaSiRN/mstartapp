@@ -29,7 +29,7 @@ export default class CommonAMap extends Component {
             zoom: 8,
           }}
         />
-        <View style={{flex: 1}}></View>
+        <View style={{flex: 1}} />
       </View>
     );
   }

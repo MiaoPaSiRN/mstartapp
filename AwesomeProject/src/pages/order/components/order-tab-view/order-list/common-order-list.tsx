@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {StyleSheet, Text, View, RefreshControl, FlatList} from 'react-native';
+import {StyleSheet, RefreshControl, FlatList} from 'react-native';
 import CommonStateView, {ViewState} from '~/components/common-view-state';
 import CommonFooter, {FooterState} from '~/components/common-footer';
 import {CommonDataModelType} from '~/common/common-model-type';
@@ -85,9 +85,15 @@ const CommonOrderList = (props: any) => {
   };
 
   const _onEndReached = () => {
-    if (!dataModel.loadFlag) return;
-    if (dataModel.loadingFirst || dataModel.loadingNext) return;
-    if (dataModel.footerState === FooterState.noMore) return;
+    if (!dataModel.loadFlag) {
+      return;
+    }
+    if (dataModel.loadingFirst || dataModel.loadingNext) {
+      return;
+    }
+    if (dataModel.footerState === FooterState.noMore) {
+      return;
+    }
     dataModel.loadFlag = false;
     setDataModel({...dataModel});
     fetchData(dataModel.page + 1);
@@ -123,7 +129,7 @@ const CommonOrderList = (props: any) => {
         }
         renderItem={({item, index}) => {
           const {orderId} = item;
-          return <OrderItem key={orderId} data={item}></OrderItem>;
+          return <OrderItem key={orderId} data={item} />;
         }}
       />
     );

@@ -2,7 +2,6 @@ import {StyleSheet, Text, View} from 'react-native';
 import React, {useState, useEffect} from 'react';
 import CommonFastImage from '~/components/common-fast-image';
 import {ProductUtils} from '../../../../utils/ProductUtils';
-import {ScrollView} from 'react-native-gesture-handler';
 
 export default function PNbpAddr(props: any) {
   const [data, setData] = useState<any>({});

@@ -1,13 +1,12 @@
-/* eslint-disable @typescript-eslint/no-shadow */
 import {StyleSheet, Image} from 'react-native';
 import React, {useContext, useEffect} from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 
-import HomeScreen from '~/pages/home-tab/home';
-import NewsScreen from '~/pages/home-tab/news';
-import DiscoverScreen from '~/pages/home-tab/discover';
-import ShopcarScreen from '~/pages/home-tab/shopcart';
-import MineScreen from '~/pages/home-tab/mine';
+import HomeScreen from '~/pages/home';
+import NewsScreen from '~/pages/news';
+import DiscoverScreen from '~/pages/discover';
+import ShopcarScreen from '~/pages/shopcart';
+import MineScreen from '~/pages/mine';
 
 const Tab = createBottomTabNavigator();
 
