@@ -1,5 +1,5 @@
-import {StyleSheet, Text, View} from 'react-native';
-import React, {useState, useContext, useEffect} from 'react';
+import {StyleSheet, View} from 'react-native';
+import React, {useEffect} from 'react';
 import {router, RouteNames} from '~/navigator/NavigationService';
 import Lottie from 'lottie-react-native';
 import {CommonAsyncStorage, extraUtil} from '~/utils';

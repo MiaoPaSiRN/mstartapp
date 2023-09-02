@@ -1,18 +1,33 @@
-import {StyleSheet, Text, View} from 'react-native';
-import React from 'react';
-export default function AddressManagerScreen() {
-  return (
-    <View style={styles.container}>
-      <Text>AddressManagerScreen</Text>
-    </View>
-  );
+import React, {Component} from 'react';
+import {StyleSheet} from 'react-native';
+import CommonScreen from '~/components/common-screen';
+import CommonSafeArea from '~/components/common-safe-area';
+import CommonStateView, {ViewState} from '~/components/common-view-state';
+export default class AddressManagerScreen extends Component {
+  constructor(props: any) {
+    super(props);
+    console.log('AddressManagerScreen - props', props);
+  }
+
+  componentDidMount() {
+    setTimeout(() => {}, 1000);
+  }
+
+  render() {
+    return (
+      <CommonScreen appbar={{title: '地址管理'}}>
+        <CommonSafeArea />
+        <CommonStateView viewState={ViewState.empty} />
+      </CommonScreen>
+    );
+  }
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+  },
+  gridView: {
+    flex: 1,
   },
 });

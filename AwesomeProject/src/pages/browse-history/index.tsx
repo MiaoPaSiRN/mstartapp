@@ -1,5 +1,5 @@
-import {StyleSheet, View, FlatList, RefreshControl} from 'react-native';
-import React, {useContext, useState, useEffect} from 'react';
+import {StyleSheet, FlatList, RefreshControl} from 'react-native';
+import React, {useState, useEffect} from 'react';
 import CommonSafeArea from '~/components/common-safe-area';
 import CommonScreen from '~/components/common-screen';
 import CommonStateView, {ViewState} from '~/components/common-view-state';
