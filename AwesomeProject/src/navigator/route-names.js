@@ -5,6 +5,7 @@ export default {
   VerticalTabLayoutDemo: 'VerticalTabLayoutDemo',
   ReactNativeRenimatedDemo: 'ReactNativeRenimatedDemo',
   CommonCustomTabBarDemo: 'CommonCustomTabBarDemo',
+  DouYinDemo: 'DouYinDemo',
   Guide: 'Guide',
   Splash: 'Splash',
   Bottomtabs: 'Bottomtabs',

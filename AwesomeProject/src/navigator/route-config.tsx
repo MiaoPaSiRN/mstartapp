@@ -27,6 +27,7 @@ import FormInputsDemo from '~/awesome-demos/form-inputs-demo';
 import VerticalTabLayoutDemo from '~/awesome-demos/vertical-tab-layout-demo';
 import ReactNativeRenimatedDemo from '~/awesome-demos/react-native-renimated-demo';
 import CommonCustomTabBarDemo from '~/awesome-demos/custom-tabbar-demo';
+import DouYinDemo from '~/awesome-demos/douyin';
 import RouteNames from './route-names'; // the variable name is arbitrary since it's exported as default
 
 function createRouter(name: string, component: any) {
@@ -70,6 +71,7 @@ const RouteConfig = [
   createRouter(RouteNames.VerticalTabLayoutDemo, VerticalTabLayoutDemo),
   createRouter(RouteNames.ReactNativeRenimatedDemo, ReactNativeRenimatedDemo),
   createRouter(RouteNames.CommonCustomTabBarDemo, CommonCustomTabBarDemo),
+  createRouter(RouteNames.DouYinDemo, DouYinDemo),
 ];
 
 export {RouteConfig, RouteNames};

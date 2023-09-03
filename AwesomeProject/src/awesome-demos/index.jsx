@@ -40,6 +40,12 @@ export default class App extends Component {
               router.push(RouteNames.CommonCustomTabBarDemo);
             }}
           />
+          <CommonCell
+            title="抖音"
+            onPress={() => {
+              router.push(RouteNames.DouYinDemo);
+            }}
+          />
         </ScrollView>
       </CommonScreen>
     );
