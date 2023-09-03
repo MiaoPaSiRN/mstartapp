@@ -55,6 +55,14 @@ class CommonService {
     );
     return requestManager.get(fullUrl);
   }
+
+  /// 快手短视频
+  fetchKuaiShowVideoList(page) {
+    const fullUrl = API.GET_JINGDONG_REPO(
+      `kuaishou/operationName/brilliantTypeDataQuery/result_${page}.json`,
+    );
+    return requestManager.get(fullUrl);
+  }
 }
 
 export let commonService = new CommonService();
