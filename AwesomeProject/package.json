@@ -43,6 +43,7 @@
     "react-native-ui-lib": "^7.7.2",
     "react-native-update": "^8.1.0",
     "react-native-vector-icons": "^10.0.0",
+    "react-native-video": "^5.2.1",
     "react-native-waterfall-flow": "^1.1.4",
     "react-native-webview": "^13.5.1",
     "react-query": "^3.39.3"
@@ -55,6 +56,7 @@
     "@react-native/metro-config": "^0.72.11",
     "@tsconfig/react-native": "^3.0.0",
     "@types/react": "^18.0.24",
+    "@types/react-native-video": "^5.0.15",
     "@types/react-test-renderer": "^18.0.0",
     "babel-jest": "^29.2.1",
     "eslint": "^8.19.0",

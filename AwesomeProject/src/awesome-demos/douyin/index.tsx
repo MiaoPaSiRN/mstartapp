@@ -1,5 +1,14 @@
 import React, {Component} from 'react';
-import {Dimensions, StyleSheet, View, Text, RefreshControl} from 'react-native';
+import {
+  Dimensions,
+  StyleSheet,
+  View,
+  Text,
+  RefreshControl,
+  Alert,
+  ViewToken,
+  DeviceEventEmitter,
+} from 'react-native';
 import CommonScreen from '~/components/common-screen';
 import CommonSafeArea from '~/components/common-safe-area';
 import CommonStateView, {ViewState} from '~/components/common-view-state';
@@ -7,9 +16,7 @@ import {SafeAreaInsetsContext} from 'react-native-safe-area-context';
 import {FlatList} from 'react-native-gesture-handler';
 import CommonFooter, {FooterState} from '~/components/common-footer';
 import {commonService} from '~/api/common-service';
-import CommonFastImage from '~/components/common-fast-image';
-import CommonVectorIcon from '~/components/common-vector-icons';
-
+import DouYinVideoCell from './cell';
 const DEVICE_HEIGHT = Dimensions.get('window').height;
 
 export default class DouYinScreen extends Component {
@@ -22,6 +29,8 @@ export default class DouYinScreen extends Component {
     data: [],
     page: 1,
     pageSize: 15,
+    isPause: true, //控制播放器是否播放，下面的代码有解释一个列表只需要一个state控制，而不用数组
+    current: 0, //表示当前item的索引，通过这个实现一个state控制全部的播放器
   };
 
   constructor(props: any) {
@@ -102,6 +111,19 @@ export default class DouYinScreen extends Component {
     this.fetchData(this.state.page + 1);
   };
 
+  // 1. Define a function outside the component:
+  _onViewableItemsChanged = (info: {viewableItems: ViewToken[]}) => {
+    console.log(info);
+    //这个方法为了让state对应当前呈现在页面上的item的播放器的state
+    //也就是只会有一个播放器播放，而不会每个item都播放
+    //可以理解为，只要不是当前再页面上的item 它的状态就应该暂停
+    //只有100%呈现再页面上的item（只会有一个）它的播放器是播放状态
+    if (info.viewableItems.length === 1) {
+      this.state.current = info.viewableItems[0].index ?? 0;
+      this.setState({});
+      DeviceEventEmitter.emit('video_current_index', this.state.current); //发送消息，并携带param参数
+    }
+  };
   _renderListView = () => {
     return (
       <SafeAreaInsetsContext.Consumer>
@@ -122,6 +144,11 @@ export default class DouYinScreen extends Component {
               onScrollBeginDrag={() => {
                 this.state.loadFlag = true;
               }}
+              onScrollEndDrag={() => console.log('Scroll end')}
+              viewabilityConfig={{
+                viewAreaCoveragePercentThreshold: 80, //item滑动80%部分才会到下一个
+              }}
+              onViewableItemsChanged={this._onViewableItemsChanged}
               refreshControl={
                 <RefreshControl
                   refreshing={this.state.loadingFirst}
@@ -138,47 +165,13 @@ export default class DouYinScreen extends Component {
               }
               keyExtractor={(item, index) => `${index}`}
               renderItem={({item, index}) => {
-                const data: any = item;
-                const photo = data.photo ?? {};
-                const author = data.author ?? {};
                 return (
-                  <View style={[styles.videoView, {height: videoViewH}]}>
-                    <CommonFastImage
-                      style={styles.background}
-                      defaultSource={require('~/assets/image/placeholder/placeholder.png')} //默认图片
-                      source={{uri: photo.animatedCoverUrl}}
-                    />
-
-                    <View style={styles.bottomBarWrap}>
-                      <View style={styles.addressWrap}>
-                        <Text style={styles.addressText}>附近-碧桂园-龙城</Text>
-                      </View>
-                      <View style={styles.userInfoWrap}>
-                        <Text style={styles.userName}>{photo.caption}</Text>
-                      </View>
-                      <CommonSafeArea type="bottom" />
-                    </View>
-                    <View style={styles.rightBarWrap}>
-                      <CommonFastImage
-                        style={styles.userAval}
-                        defaultSource={require('~/assets/image/placeholder/placeholder.png')} //默认图片
-                        source={{uri: author.headerUrl}}
-                      />
-                      <FlatList
-                        data={['heart', 'comments', 'star', 'share']}
-                        renderItem={({item, index}) => {
-                          return (
-                            <View style={styles.actionBtn}>
-                              <CommonVectorIcon name={item} color={'#FFF'} />
-                              <Text style={styles.actionTitle}>{index}</Text>
-                            </View>
-                          );
-                        }}
-                      />
-                      <View style={{height: 100}} />
-                      <CommonSafeArea type="bottom" />
-                    </View>
-                  </View>
+                  <DouYinVideoCell
+                    info={item}
+                    videoViewH={videoViewH}
+                    index={index}
+                    current={this.state.current}
+                  />
                 );
               }}
             />
@@ -209,51 +202,5 @@ export default class DouYinScreen extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-  },
-  videoView: {
-    flex: 1,
-  },
-  background: {
-    width: '100%',
-    height: '100%',
-  },
-  bottomBarWrap: {
-    position: 'absolute',
-    bottom: 0,
-    width: '100%',
-  },
-  addressWrap: {
-    padding: 10,
-  },
-  addressText: {
-    color: '#FFF',
-  },
-  userInfoWrap: {
-    width: '100%',
-    padding: 10,
-  },
-  userName: {
-    color: '#FFF',
-  },
-  rightBarWrap: {
-    position: 'absolute',
-    right: 0,
-    bottom: 0,
-    alignItems: 'center',
-  },
-  userAval: {
-    width: 50,
-    height: 50,
-    borderColor: '#FFF',
-    borderWidth: 2,
-    borderRadius: 25,
-    marginBottom: 10,
-  },
-  actionBtn: {
-    marginBottom: 10,
-    alignItems: 'center',
-  },
-  actionTitle: {
-    color: '#FFF',
   },
 });
