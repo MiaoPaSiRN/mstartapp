@@ -8,6 +8,7 @@ import {
   TouchableWithoutFeedback,
   View,
   ViewStyle,
+  StatusBar,
 } from 'react-native';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
 import {
@@ -80,6 +81,11 @@ const HomeContentView = () => {
 
     return (
       <CommonImageBackground style={background_style}>
+        <StatusBar
+          barStyle={'dark-content'}
+          translucent
+          backgroundColor="rgba(0, 0, 0, 0)"
+        />
         <View style={[styles.navigationbar]}>
           <View style={[styles.segement]}>
             {props.navigationState.routes.map((route: Route, index: number) => {

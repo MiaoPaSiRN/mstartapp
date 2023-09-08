@@ -15,7 +15,11 @@ export default function CommonScreen({
 }: CommonScreenProps) {
   return (
     <View style={[commonStyles.page]}>
-      <StatusBar barStyle={'dark-content'} />
+      <StatusBar
+        barStyle={'dark-content'}
+        translucent={true}
+        backgroundColor="transparent"
+      />
       {children}
       {showAppbar ? <CommonAppBar {...appbar} /> : undefined}
     </View>
