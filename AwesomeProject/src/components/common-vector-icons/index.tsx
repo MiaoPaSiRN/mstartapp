@@ -29,11 +29,13 @@ export default function CommonVectorIcon(props: IProps) {
         size={props.size ?? undefined}
         color={props.color ?? '#000'} //控制图标和文字颜色
         backgroundColor={props.backgroundColor ?? 'transparent'}
-        iconStyle={Object.assign({}, {marginRight: 0}, props.iconStyle)}
-        style={Object.assign(
-          {backgroundColor: 'transparent', opacity: 1},
-          props.style,
-        )} //控制按钮背景色
+        // iconStyle={Object.assign({}, {marginRight: 0}, props.iconStyle)}
+        iconStyle={{marginRight: 0}}
+        style={{backgroundColor: 'transparent', opacity: 1}}
+        // style={Object.assign(
+        //   {backgroundColor: 'transparent', opacity: 1},
+        //   props.style,
+        // )} //控制按钮背景色
       />
     </TouchableOpacity>
   );
