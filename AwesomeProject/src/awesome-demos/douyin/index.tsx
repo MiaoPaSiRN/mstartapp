@@ -2,12 +2,9 @@ import React, {Component} from 'react';
 import {
   Dimensions,
   StyleSheet,
-  View,
-  Text,
   RefreshControl,
-  Alert,
   ViewToken,
-  DeviceEventEmitter,
+  View,
 } from 'react-native';
 import CommonScreen from '~/components/common-screen';
 import CommonSafeArea from '~/components/common-safe-area';
@@ -29,8 +26,8 @@ export default class DouYinScreen extends Component {
     data: [],
     page: 1,
     pageSize: 15,
-    isPause: true, //控制播放器是否播放，下面的代码有解释一个列表只需要一个state控制，而不用数组
-    current: 0, //表示当前item的索引，通过这个实现一个state控制全部的播放器
+    cellRefs: new Map(),
+    flatListH: 0,
   };
 
   constructor(props: any) {
@@ -114,22 +111,45 @@ export default class DouYinScreen extends Component {
   // 1. Define a function outside the component:
   _onViewableItemsChanged = (info: {viewableItems: ViewToken[]}) => {
     console.log(info);
-    //这个方法为了让state对应当前呈现在页面上的item的播放器的state
-    //也就是只会有一个播放器播放，而不会每个item都播放
-    //可以理解为，只要不是当前再页面上的item 它的状态就应该暂停
-    //只有100%呈现再页面上的item（只会有一个）它的播放器是播放状态
     if (info.viewableItems.length === 1) {
-      this.state.current = info.viewableItems[0].index ?? 0;
-      this.setState({});
-      DeviceEventEmitter.emit('video_current_index', this.state.current); //发送消息，并携带param参数
+      const current = info.viewableItems[0].index ?? 0;
+      // Get the keys of the Map
+      const mapKeys = Array.from(this.state.cellRefs.keys());
+      for (let index = 0; index < mapKeys.length; index++) {
+        const ref = this.state.cellRefs.get(index);
+        if (index === current) {
+          if (ref?.toPlay) {
+            ref?.toPlay();
+          }
+        } else {
+          if (ref?.toPaused) {
+            ref?.toPaused();
+          }
+        }
+      }
     }
   };
   _renderListView = () => {
+    if (this.state.flatListH === 0) {
+      return (
+        <View
+          style={{flex: 1}}
+          onLayout={(event: any) => {
+            const y = event.nativeEvent.layout.y;
+            const height = event.nativeEvent.layout.height;
+            console.log('onLayout' + height);
+            this.setState({flatListH: height});
+          }}
+        />
+      );
+    } else {
+    }
     return (
       <SafeAreaInsetsContext.Consumer>
         {insets => {
-          const videoViewH =
-            DEVICE_HEIGHT - (Math.max(insets?.top ?? 0, 22) + 44);
+          const appBarH = Math.max(insets?.top ?? 0, 22) + 44;
+          const bottomSafeH = insets?.bottom ?? 0;
+          const videoViewH = DEVICE_HEIGHT - appBarH;
 
           return (
             <FlatList
@@ -168,9 +188,10 @@ export default class DouYinScreen extends Component {
                 return (
                   <DouYinVideoCell
                     info={item}
-                    videoViewH={videoViewH}
-                    index={index}
-                    current={this.state.current}
+                    videoViewH={this.state.flatListH}
+                    ref={ref => {
+                      this.state.cellRefs.set(index, ref);
+                    }}
                   />
                 );
               }}

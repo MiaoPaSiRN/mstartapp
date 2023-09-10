@@ -62,3 +62,7 @@ import com.brentvatne.react.ReactVideoPackage;  //加这个
         }
 
 ```
+
+### 抓包数据来源 https://www.kuaishou.com/
+
+点击顶部选项”短视频“ ===》 数据来自精彩短视频，可在控制台网络中筛选：https://www.kuaishou.com/graphql

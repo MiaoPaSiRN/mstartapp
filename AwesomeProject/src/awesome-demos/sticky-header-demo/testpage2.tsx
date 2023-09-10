@@ -200,7 +200,7 @@ const AppBar = React.forwardRef((props: any, ref: any) => {
         right: 0,
         opacity: bgImageOpacity,
       }}>
-      <CommonSafeArea type="top"></CommonSafeArea>
+      <CommonSafeArea type="top" />
       <View
         style={{height: 44, justifyContent: 'center', alignItems: 'center'}}>
         <Text>{'AppBar'}</Text>
