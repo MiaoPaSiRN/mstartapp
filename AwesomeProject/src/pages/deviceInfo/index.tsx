@@ -1,5 +1,5 @@
 import {StyleSheet, View, FlatList, Text} from 'react-native';
-import React, {useContext, useState, useEffect} from 'react';
+import React, {useState, useEffect} from 'react';
 import DeviceInfo from 'react-native-device-info';
 import CommonSafeArea from '~/components/common-safe-area';
 import CommonScreen from '~/components/common-screen';
@@ -110,6 +110,7 @@ export default function DeviceInfoScreen() {
       <FlatList
         style={{flex: 1}}
         data={data}
+        initialNumToRender={data.length}
         renderItem={({item, index}) => {
           return (
             <View style={{marginTop: 5}}>
