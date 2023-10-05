@@ -1,8 +1,15 @@
 import React, {Component} from 'react';
-import {Text, StyleSheet, View, ImageBackground} from 'react-native';
+import {
+  Text,
+  StyleSheet,
+  View,
+  ImageBackground,
+  TouchableOpacity,
+} from 'react-native';
 import {SafeAreaInsetsContext} from 'react-native-safe-area-context';
 import {extraUtil} from '~/utils';
 import CommonFastImage from '~/components/common-fast-image';
+import {router, RouteNames} from '~/navigator/NavigationService';
 
 export default class UserimageFloor extends Component {
   safeAreaInsets = null;
@@ -83,16 +90,22 @@ class UserInfoSns extends Component {
     );
   };
 
+  enterAppButtonPressed = () => {
+    router.push(RouteNames.Login);
+  };
+
   render() {
     const {
       userInfoSns: {imgUrl, title},
     } = this.props.data;
     return (
       <View style={{flexDirection: 'row'}}>
-        <CommonFastImage
-          source={{uri: imgUrl}}
-          style={{width: 60, height: 60}}
-        />
+        <TouchableOpacity onPress={this.enterAppButtonPressed}>
+          <CommonFastImage
+            source={{uri: imgUrl}}
+            style={{width: 60, height: 60}}
+          />
+        </TouchableOpacity>
         <View
           style={{
             flex: 1,

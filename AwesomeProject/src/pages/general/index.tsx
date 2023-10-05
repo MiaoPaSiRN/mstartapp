@@ -1,13 +1,12 @@
 import {
   StyleSheet,
-  Text,
   View,
   ScrollView,
   StyleProp,
   ViewStyle,
   Dimensions,
 } from 'react-native';
-import React, {useState, useContext, useEffect} from 'react';
+import React, {useState, useEffect} from 'react';
 import CommonScreen from '~/components/common-screen';
 import CommonSafeArea from '~/components/common-safe-area';
 import CommonCell from '~/components/common-cell';
